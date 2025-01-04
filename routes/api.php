@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // })->middleware('auth:sanctum');
 
-Route::apiResource('employes', EmployeController::class)->middleware('auth:sanctum');
+Route::apiResource('employes', EmployeController::class);
 Route::apiResource('notifications', NotificationController::class)->middleware('auth:sanctum');
 Route::apiResource('conges', DemandeCongeController::class)->middleware('auth:sanctum');
 
