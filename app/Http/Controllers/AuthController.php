@@ -28,7 +28,16 @@ class AuthController extends Controller
             'message' => 'Login successful',
             'token' => $token,
             'token_type' => 'Bearer',
-            'employe' => $employe,
+            'employe' => [
+                'id' => $employe->id,
+                'prenom' => $employe->prenom,
+                'nom' => $employe->nom,
+                'email' => $employe->email,
+                'poste' => $employe->poste,
+                'solde_conge' => $employe->solde_conge,
+                'date_embauche' => $employe->date_embauche,
+                'is_admin' => $employe->is_admin,
+            ],
         ]);
     
         // $user = Auth::user();

@@ -12,7 +12,7 @@ class DemandeCongeController extends Controller
      */
     public function index()
     {
-        $demandes_conges = DemandeConge::all();
+        $demandes_conges = DemandeConge::with('employe')->get();
         return response()->json($demandes_conges);
     }
 
