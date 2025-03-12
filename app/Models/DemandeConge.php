@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DemandeConge extends Model
 {
+    // Champs remplissables (mass assignable)
     protected $fillable = [
         'employe_id',
         'nbr_jours_demandes',
@@ -15,11 +16,15 @@ class DemandeConge extends Model
         'statut',
     ];
 
-    public function employe() {
+    // Relation avec l'employé
+    public function employe()
+    {
         return $this->belongsTo(Employe::class);
     }
 
-    public function notifications() {
-        return $this->manyToMany(Employe::class);
+    // Relation avec les notifications
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
     }
 }

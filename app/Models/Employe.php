@@ -41,4 +41,6 @@ class Employe extends Authenticatable
     // {
     //     return "{$this->prenom} {$this->nom}";
     // }
+
+
 }
