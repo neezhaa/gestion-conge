@@ -18,6 +18,7 @@ class DemandeCongeController extends Controller
 
         // Récupérer les demandes de congé de l'employé connecté
         $demandes = DemandeConge::where('employe_id', $employeId)->get();
+        $demandes = DemandeConge::all();
 
         return response()->json([
             'message' => 'Demandes de congé récupérées avec succès',

@@ -19,7 +19,7 @@ class NotificationController extends Controller
         $employeId = Auth::id();
 
         // Filtrer les notifications pour l'employé connecté
-        $notifications = Notification::where('employe_id', $employeId)->get();
+        $notifications = Notification::all();
 
         return response()->json($notifications);
     }
@@ -41,7 +41,7 @@ class NotificationController extends Controller
 
         // Ajouter l'ID de l'employé connecté
         $data = $request->all();
-        $data['employe_id'] = Auth::id();
+        // $data['employe_id'] = Auth::id();
 
         // Créer la notification
         $notification = Notification::create($data);
