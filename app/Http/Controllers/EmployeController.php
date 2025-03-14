@@ -55,13 +55,13 @@ class EmployeController extends Controller
     public function update(Request $request, string $id)
     {
         $validated = $request->validate([
-            'nom_complet' => 'required|string|max:255',
-            'email' => 'required|email|unique:employes,email',
-            'password' => 'required|string',
-            'poste' => 'required|string',
-            'solde_conge' => 'required|integer|max:18',
-            'date_embauche' => 'required|date',
-            'is_admin' => 'required|boolean',
+            'nom_complet' => 'sometimes|required|string|max:255',
+            'email' => 'sometimes|required|email|unique:employes,email',
+            'password' => 'sometimes|required|string',
+            'poste' => 'sometimes|required|string',
+            'solde_conge' => 'sometimes|required|integer|max:18',
+            'date_embauche' => 'sometimes|required|date',
+            'is_admin' => 'sometimes|required|boolean',
         ]);
 
         // $validated['password'] = Hash::make($validated['password']);
