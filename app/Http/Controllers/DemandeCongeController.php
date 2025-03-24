@@ -110,8 +110,6 @@ class DemandeCongeController extends Controller
      */
     public function destroy(DemandeConge $demande)
     {
-
-
         // Vérifier que la demande appartient à l'employé connecté
         if ($demande->employe_id !== Auth::id()) {
             return response()->json([
