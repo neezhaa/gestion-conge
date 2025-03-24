@@ -108,21 +108,19 @@ class DemandeCongeController extends Controller
     /**
      * Supprime une demande de congé existante.
      */
-    public function destroy($id)
+    public function destroy(DemandeConge $demande)
     {
 
-        $demandeConge = DemandeConge::find($id);
 
         // Vérifier que la demande appartient à l'employé connecté
-        // if ($demandeConge->employe_id !== Auth::id()) {
-        //     return response()->json([
-        //         'message' => 'Accès non autorisé',
-        //         "data" => $demandeConge
-        //     ], 403);
-        // }
+        if ($demande->employe_id !== Auth::id()) {
+            return response()->json([
+                'message' => 'Accès non autorisé',
+            ], 403);
+        }
         // Supprimer la demande de congé
 
-        $demandeConge->delete();
+        $demande->delete();
 
         return response()->json([
             'message' => 'Demande de congé supprimée avec succès',
