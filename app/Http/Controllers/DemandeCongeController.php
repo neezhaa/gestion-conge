@@ -80,15 +80,24 @@ class DemandeCongeController extends Controller
     /**
      * Met à jour une demande de congé existante.
      */
+
+
+    public function updateStatut(Request $request, $id)
+    {
+        $conge = DemandeConge::findOrFail($id);
+        
+        $request->validate([
+            'statut' => 'required|in:accepté,refusé',
+        ]);
+
+        $conge->statut = $request->statut;
+        $conge->save();
+
+        return response()->json(['message' => 'Statut mis à jour', 'data' => $conge]);
+    }
+
     public function update(Request $request, DemandeConge $demandeConge)
     {
-        // Vérifier que la demande appartient à l'employé connecté
-        if ($demandeConge->employe_id !== Auth::id()) {
-            return response()->json([
-                'message' => 'Accès non autorisé',
-            ], 403);
-        }
-
         // Validation des données
         $request->validate([
             'date_debut' => 'sometimes|date',
@@ -110,14 +119,6 @@ class DemandeCongeController extends Controller
      */
     public function destroy(DemandeConge $demande)
     {
-        // Vérifier que la demande appartient à l'employé connecté
-        if ($demande->employe_id !== Auth::id()) {
-            return response()->json([
-                'message' => 'Accès non autorisé',
-            ], 403);
-        }
-        // Supprimer la demande de congé
-
         $demande->delete();
 
         return response()->json([
